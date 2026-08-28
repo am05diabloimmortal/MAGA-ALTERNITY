@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Check, ClipboardCopy, FileUp, RotateCcw, Search, UserPlus } from 'lucide-react';
 import type { BoardState, Player, RoleKey } from '@/lib/types';
 import { TIER_ORDER } from '@/lib/types';
-import { newPlayer } from '@/lib/store';
+import { newPlayer, forceSaveRoster } from '@/lib/store';
 import { rosterToText, unassignedPlayers } from '@/lib/analytics';
 import { PlayerModal } from '@/components/PlayerModal';
 import { ImportModal } from '@/components/ImportModal';
@@ -122,6 +122,9 @@ export function EditorView({ state, setState }: EditorViewProps) {
   };
 
   const handleImport = (players: Player[]) => {
+    // Force-save to localStorage BEFORE updating UI state, so clipboard data
+    // is never lost even if a layout refresh happens mid-update.
+    forceSaveRoster(players);
     // Destructive overwrite: wipe all previous players, replace with imported roster
     setState((prev) => ({
       ...prev,
@@ -152,8 +155,8 @@ export function EditorView({ state, setState }: EditorViewProps) {
   };
 
   const resetBoard = () => {
-    if (confirm('Reset the entire board? This clears all players and restores seed data.')) {
-      localStorage.removeItem('alternity-v1');
+    if (confirm('Reset the entire board? This clears all players and starts with an empty roster.')) {
+      try { localStorage.removeItem('alternity_roster_data'); } catch { /* ignore */ }
       window.location.reload();
     }
   };
