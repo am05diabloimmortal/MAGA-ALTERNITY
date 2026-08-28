@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-obsidian-950 text-obsidian-100 font-body antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(122, 12, 12, 0.18), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(168, 45, 45, 0.08), transparent 60%),
+      linear-gradient(180deg, #0a0908 0%, #121110 100%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-wide;
+  }
+
+  ::selection {
+    @apply bg-crimson-800/60 text-obsidian-50;
+  }
+}
+
+@layer components {
+  .card-surface {
+    @apply rounded-lg border border-obsidian-600/70 bg-obsidian-800/70 backdrop-blur-sm;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-3.5 py-2 text-sm font-semibold transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-crimson-700 text-obsidian-50 hover:bg-crimson-600 active:bg-crimson-800;
+  }
+
+  .btn-ghost {
+    @apply btn border border-obsidian-600 bg-obsidian-800/60 text-obsidian-100 hover:border-obsidian-500 hover:bg-obsidian-700/60;
+  }
+
+  .btn-danger {
+    @apply btn border border-crimson-700/60 bg-crimson-900/40 text-crimson-100 hover:bg-crimson-800/50;
+  }
+
+  .input {
+    @apply w-full rounded-md border border-obsidian-600 bg-obsidian-900/80 px-3 py-2 text-sm text-obsidian-100 placeholder-obsidian-400 outline-none transition focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500/40;
+  }
+
+  .select {
+    @apply input appearance-none bg-obsidian-900/80 pr-8;
+  }
+
+  .label {
+    @apply mb-1 block text-xs font-semibold uppercase tracking-wider text-obsidian-300;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #121110;
+}
+::-webkit-scrollbar-thumb {
+  background: #33312d;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4742;
+}
