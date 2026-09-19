@@ -6,16 +6,12 @@ import { ClassIcon, RoleIcon } from '@/components/Badges';
 export interface FilterState {
   class: ClassKey | 'all';
   role: RoleKey | 'all';
-  crMin: number;
-  crMax: number;
   unassignedOnly: boolean;
 }
 
 export const DEFAULT_FILTERS: FilterState = {
   class: 'all',
   role: 'all',
-  crMin: 0,
-  crMax: 10000,
   unassignedOnly: false,
 };
 
@@ -123,28 +119,7 @@ export function FilterSidebar({ filters, setFilters, resultCount, totalCount }: 
         </div>
       </div>
 
-      {/* CR range */}
-      <div>
-        <span className="label">Combat Rating Range</span>
-        <div className="flex items-center gap-2">
-          <input
-            type="number"
-            min={0}
-            value={filters.crMin}
-            onChange={(e) => set('crMin', Math.max(0, Number(e.target.value) || 0))}
-            className="input px-2 py-1.5 text-xs"
-            placeholder="Min"
-          />
-          <X className="h-3 w-3 text-obsidian-500" />
-          <input
-            type="number"
-            min={0}
-            value={filters.crMax}
-            onChange={(e) => set('crMax', Math.max(0, Number(e.target.value) || 0))}
-            className="input px-2 py-1.5 text-xs"
-            placeholder="Max"
-          />
-        </div>
+
       </div>
     </aside>
   );

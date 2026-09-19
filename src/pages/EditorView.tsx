@@ -38,7 +38,6 @@ export function EditorView({ state, setState }: EditorViewProps) {
     return state.players.filter((p) => {
       if (filters.class !== 'all' && p.class !== filters.class) return false;
       if (filters.role !== 'all' && p.role !== filters.role) return false;
-      if (p.cr < filters.crMin || p.cr > filters.crMax) return false;
       if (filters.unassignedOnly && p.roomId !== null) return false;
       if (q && !p.name.toLowerCase().includes(q)) return false;
       return true;

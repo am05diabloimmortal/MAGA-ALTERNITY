@@ -107,7 +107,6 @@ export function newPlayer(partial?: Partial<Omit<Player, 'id'>>): Player {
     name: partial?.name ?? '',
     class: partial?.class ?? 'Barbarian',
     role: partial?.role ?? 'DPS',
-    cr: partial?.cr ?? 0,
     resonance: partial?.resonance ?? 0,
     note: partial?.note ?? '',
     roomId: partial?.roomId ?? null,
@@ -128,6 +127,7 @@ export function normalizeClass(raw: string): ClassKey {
   if (lower.includes('druid')) return 'Druid';
   if (lower.includes('warlock')) return 'Warlock';
   if (lower.includes('necro')) return 'Necromancer';
+  if (lower.includes('demon hunter') || lower.includes('demonhunter')) return 'Demon Hunter';
   return 'Barbarian';
 }
 
@@ -140,7 +140,7 @@ export interface ParsedImport {
  * Parse raw text from Diablo Immortal's "Export Member Data as CSV" feature.
  * Expected header: numbering,Name,Level,Class,Resonance,My Rank
  * Maps: col 2 -> Name, col 4 -> Class, col 5 -> Resonance.
- * CR defaults to 0, role defaults to DPS, all dumped into the Reserved pool.
+ * Role defaults to DPS, all dumped into the Reserved pool.
  */
 export function parseCsvImport(raw: string): ParsedImport {
   const lines = raw.split(/\r?\n/).filter((l) => l.trim() !== '');
@@ -166,7 +166,6 @@ export function parseCsvImport(raw: string): ParsedImport {
         name,
         class: normalizeClass(rawClass),
         role: 'DPS',
-        cr: 0,
         resonance,
         note: '',
         roomId: 'reserved',

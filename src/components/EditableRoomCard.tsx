@@ -63,9 +63,6 @@ export function EditablePlayerCard({
 
       <div className="mt-1.5 flex items-center justify-between gap-2 pl-6">
         <ClassBadge cls={player.class} />
-        <span className="text-xs font-bold text-crimson-300">
-          CR {player.cr.toLocaleString()}
-        </span>
         <span className="text-xs text-ember-300">
           Res {player.resonance.toLocaleString()}
         </span>
@@ -145,7 +142,7 @@ export function EditableRoomCard({
 }: EditableRoomCardProps) {
   const members = players
     .filter((p) => p.roomId === room.id)
-    .sort((a, b) => b.cr - a.cr);
+    ;
   const isReserved = room.tier === 'Reserved';
   const capacity = room.capacity ?? 0;
   const count = members.length;
@@ -184,9 +181,6 @@ export function EditableRoomCard({
           </span>
         </div>
         <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-obsidian-300">
-          <span className="inline-flex items-center gap-1" title="Average CR">
-            <span className="text-crimson-400">CR</span> {count > 0 ? Math.round(members.reduce((s, p) => s + p.cr, 0) / count).toLocaleString() : '—'}
-          </span>
           <span className="inline-flex items-center gap-1" title="Total Resonance">
             <span className="text-ember-400">Res</span> {members.reduce((s, p) => s + p.resonance, 0).toLocaleString()}
           </span>
@@ -285,8 +279,7 @@ export function UnassignedPool({
           </p>
         ) : (
           players
-            .sort((a, b) => b.cr - a.cr)
-            .map((m) => (
+                    .map((m) => (
               <EditablePlayerCard
                 key={m.id}
                 player={m}

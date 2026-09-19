@@ -12,7 +12,7 @@ interface AutoCompleteSlotProps {
 /**
  * An empty room slot that acts as an intelligent auto-complete search box.
  * Typing a name/BattleTag searches the roster; selecting a result binds that
- * player's full profile (Class, Resonance, CR, Role) into this room slot.
+ * player's full profile (Class, Resonance, Role) into this room slot.
  */
 export function AutoCompleteSlot({ allPlayers, onAssign, disabled }: AutoCompleteSlotProps) {
   const [query, setQuery] = useState('');
@@ -89,7 +89,7 @@ export function AutoCompleteSlot({ allPlayers, onAssign, disabled }: AutoComplet
                 <span className="flex shrink-0 items-center gap-2">
                   <ClassBadge cls={p.class} />
                   <span className="text-[10px] text-obsidian-400">
-                    CR {p.cr.toLocaleString()} · Res {p.resonance.toLocaleString()}
+                    Res {p.resonance.toLocaleString()}
                   </span>
                 </span>
               </button>

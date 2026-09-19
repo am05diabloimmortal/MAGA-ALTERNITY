@@ -1,4 +1,4 @@
-import { Crown, Gauge, Sparkles, Users } from 'lucide-react';
+import { Crown, Sparkles, Users } from 'lucide-react';
 import type { Player, Room } from '@/lib/types';
 import { TIER_ACCENT } from '@/lib/types';
 import { computeRoomStats, roomMembers } from '@/lib/analytics';
@@ -12,7 +12,7 @@ interface RoomCardProps {
 
 export function RoomCard({ room, players, compact = false }: RoomCardProps) {
   const stats = computeRoomStats(room, players);
-  const members = roomMembers(room.id, players).sort((a, b) => b.cr - a.cr);
+  const members = roomMembers(room.id, players);
   const accent = TIER_ACCENT[room.tier];
   const isReserved = room.tier === 'Reserved';
 
@@ -43,10 +43,6 @@ export function RoomCard({ room, players, compact = false }: RoomCardProps) {
 
         {!compact && (
           <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-obsidian-300">
-            <span className="inline-flex items-center gap-1" title="Average Combat Rating">
-              <Gauge className="h-3 w-3 text-crimson-400" />
-              CR {stats.avgCr.toLocaleString()}
-            </span>
             <span className="inline-flex items-center gap-1" title="Total Resonance">
               <Sparkles className="h-3 w-3 text-ember-400" />
               {stats.totalResonance.toLocaleString()}
@@ -78,9 +74,6 @@ export function RoomCard({ room, players, compact = false }: RoomCardProps) {
               <div className="flex items-center justify-between gap-2">
                 <span className="truncate text-sm font-semibold text-obsidian-50">
                   {m.name}
-                </span>
-                <span className="shrink-0 text-xs font-bold text-crimson-300">
-                  {m.cr.toLocaleString()}
                 </span>
               </div>
               <div className="mt-1 flex items-center justify-between gap-2">

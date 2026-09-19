@@ -73,9 +73,6 @@ export function PublicView({ state }: PublicViewProps) {
                   </span>
                   <ClassBadge cls={matchedPlayer.class} size="md" />
                   <RoleBadge role={matchedPlayer.role} />
-                  <span className="text-sm font-bold text-crimson-300">
-                    CR {matchedPlayer.cr.toLocaleString()}
-                  </span>
                 </div>
                 <span className="text-sm font-semibold text-obsidian-200">
                   {matchedRoom ? (

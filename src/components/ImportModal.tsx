@@ -60,7 +60,7 @@ export function ImportModal({ open, onClose, onImport }: ImportModalProps) {
         <div className="flex-1 overflow-y-auto p-5">
           <p className="mb-3 text-sm text-obsidian-300">
             Paste raw text from Diablo Immortal's <span className="font-semibold text-obsidian-100">"Export Member Data as CSV"</span> feature.
-            The header row is ignored. Names, Classes, and Resonance are parsed; CR defaults to 0 and Role to DPS.
+            The header row is ignored. Names, Classes, and Resonance are parsed; Role defaults to DPS.
             All imported players go into the <span className="font-semibold text-obsidian-100">Reserved</span> standby pool.
           </p>
           <div className="mb-3 flex items-start gap-2 rounded-md border border-crimson-700/50 bg-crimson-900/20 px-3 py-2 text-xs text-crimson-200">

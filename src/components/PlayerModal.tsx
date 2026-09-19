@@ -14,7 +14,6 @@ const EMPTY: Omit<Player, 'id'> = {
   name: '',
   class: 'Barbarian',
   role: 'DPS',
-  cr: 0,
   resonance: 0,
   note: '',
   roomId: null,
@@ -96,29 +95,16 @@ export function PlayerModal({ open, initial, onClose, onSave }: PlayerModalProps
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="label" htmlFor="p-cr">Combat Rating (CR)</label>
-              <input
-                id="p-cr"
-                type="number"
-                min={0}
-                value={form.cr}
-                onChange={(e) => set('cr', Math.max(0, Number(e.target.value) || 0))}
-                className="input"
-              />
-            </div>
-            <div>
-              <label className="label" htmlFor="p-res">Resonance</label>
-              <input
-                id="p-res"
-                type="number"
-                min={0}
-                value={form.resonance}
-                onChange={(e) => set('resonance', Math.max(0, Number(e.target.value) || 0))}
-                className="input"
-              />
-            </div>
+          <div>
+            <label className="label" htmlFor="p-res">Resonance</label>
+            <input
+              id="p-res"
+              type="number"
+              min={0}
+              value={form.resonance}
+              onChange={(e) => set('resonance', Math.max(0, Number(e.target.value) || 0))}
+              className="input"
+            />
           </div>
 
           <div>

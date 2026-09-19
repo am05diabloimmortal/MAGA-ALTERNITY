@@ -7,7 +7,8 @@ export type ClassKey =
   | 'Tempest'
   | 'Druid'
   | 'Warlock'
-  | 'Necromancer';
+  | 'Necromancer'
+  | 'Demon Hunter';
 
 export type RoleKey = 'Tank' | 'DPS' | 'Leader' | 'CC';
 
@@ -27,7 +28,6 @@ export interface Player {
   name: string; // BattleTag
   class: ClassKey;
   role: RoleKey; // per-match dynamic role
-  cr: number; // Combat Rating
   resonance: number;
   note: string; // Availability note
   roomId: string | null; // null = unassigned
@@ -48,6 +48,7 @@ export const CLASSES: ClassKey[] = [
   'Druid',
   'Warlock',
   'Necromancer',
+  'Demon Hunter',
 ];
 
 export const ROLES: RoleKey[] = ['Tank', 'DPS', 'Leader', 'CC'];
@@ -69,6 +70,7 @@ export const CLASS_COLORS: Record<ClassKey, string> = {
   Druid: 'text-lime-300',
   Warlock: 'text-fuchsia-300',
   Necromancer: 'text-green-500',
+  'Demon Hunter': 'text-orange-300',
 };
 
 export const FIXED_ROOM_CAPACITY = 8;

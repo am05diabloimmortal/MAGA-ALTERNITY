@@ -8,6 +8,7 @@ import {
   Leaf,
   Flame,
   Skull,
+  Crosshair,
   Swords,
   Crown,
   Wand2,
@@ -27,6 +28,7 @@ const CLASS_ICON: Record<ClassKey, React.ComponentType<{ className?: string }>> 
   Druid: Leaf,
   Warlock: Flame,
   Necromancer: Skull,
+  'Demon Hunter': Crosshair,
 };
 
 const ROLE_ICON: Record<RoleKey, React.ComponentType<{ className?: string }>> = {
