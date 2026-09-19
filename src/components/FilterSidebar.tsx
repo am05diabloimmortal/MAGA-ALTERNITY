@@ -118,9 +118,6 @@ export function FilterSidebar({ filters, setFilters, resultCount, totalCount }: 
           ))}
         </div>
       </div>
-
-
-      </div>
     </aside>
   );
 }
